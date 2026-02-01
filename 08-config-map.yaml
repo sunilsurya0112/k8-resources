@@ -1,5 +1,5 @@
 kind: ConfigMap
-appVersion: v1
+apiVersion: v1
 metadata:
   name: myconfig
 data:
