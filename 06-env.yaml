@@ -9,7 +9,7 @@ spec:
       env:
       - name: course
         value: Devops
-      - trainer: name
+      - name: trainer
         value: Siva
-      - duration: duration
+      - name: duration
         value: 100 Hrs
