@@ -1,0 +1,7 @@
+kind: ConfigMap
+appVersion: v1
+metadata:
+  name: myconfig
+data:
+  course: "Kubernetes"
+  duration: "25 Hrs"
