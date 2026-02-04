@@ -18,6 +18,8 @@ apiVersion: v1
 kind: Pod
 metadata:
   name: ebs-static-pod
+  labels:
+  purpose: "ebs-static-demo"
 spec:
   nodeSelector:
     topology.kubernetes.io/zone: us-east-1f
@@ -30,4 +32,20 @@ spec:
   volumes:
   - name: persistent-storage
     persistentVolumeClaim:
-      claimName: ebs-pvc-claim  
+      claimName: ebs-pvc-claim 
+
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: nginx-lb
+spec:
+  type: LoadBalancer  # tyoe shoul be mention here, if we don't mention it will take cluster IP by default
+  selector: # labels are used as selectors
+    purpose: "ebs-static-demo"
+  ports:
+  - protocol: TCP
+    port: 80 # service port
+    targetPort: 80
+    nodePort: 30007
