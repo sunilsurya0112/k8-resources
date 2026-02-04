@@ -1,25 +1,23 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: ebs-pvc-claim
+  name: ebs-static
 spec:
   storageClassName: "" # Empty string must be explicitly set otherwise default StorageClass will be set
-  #pv name
+  # PV name
   volumeName: ebs-static
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
       storage: 20Gi
-
 ---
-
 apiVersion: v1
 kind: Pod
 metadata:
-  name: ebs-static-pod
+  name: ebs-static
   labels:
-  purpose: "ebs-static-demo"
+    purpose: "ebs-static-demo"
 spec:
   nodeSelector:
     topology.kubernetes.io/zone: us-east-1f
@@ -32,16 +30,14 @@ spec:
   volumes:
   - name: persistent-storage
     persistentVolumeClaim:
-      claimName: ebs-pvc-claim 
-
+      claimName: ebs-static
 ---
-
 kind: Service
 apiVersion: v1
 metadata:
   name: nginx-lb
 spec:
-  type: LoadBalancer  # tyoe shoul be mention here, if we don't mention it will take cluster IP by default
+  type: LoadBalancer
   selector: # labels are used as selectors
     purpose: "ebs-static-demo"
   ports:
