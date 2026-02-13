@@ -1,8 +1,8 @@
 kind: Pod
 apiVersion : v1
 metadata:
-name: sa-demo
-namespace: expense
+  name: sa-demo
+  namespace: expense
 spec:
 #one pod can contain multiple containers
 serviceAccount: expense-mysql-secret
