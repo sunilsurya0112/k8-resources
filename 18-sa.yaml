@@ -11,14 +11,14 @@ initContainers:
   image: amazon/aws-cli
   command: ['sh', '-c', 'aws secretsmanager get-secret-value --secret-id expense/mysql/creds --query SecretString --output text > /secrets']
   volumeMounts:
-    - mountPath: /secrets
-      name: secret-volume
+  - mountPath: /secrets
+    name: secret-volume
 containers:
 - name: nginx
   image: nginx
   volumeMounts:
-    - mountPath: /secrets
-      name: secret-volume
+  - mountPath: /secrets
+    name: secret-volume
 volumes:
-  - name: secret-volume
-    emptyDir: {}
+- name: secret-volume
+  emptyDir: {}
