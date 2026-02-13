@@ -17,7 +17,7 @@ metadata:
   namespace: expense
 subjects:
 # You can specify more than one "subject"
-- kind: serviceAccount
+- kind: ServiceAccount
   name: expense-mysql-secret # "name" is case sensitive
   namespace: expense
 roleRef:
